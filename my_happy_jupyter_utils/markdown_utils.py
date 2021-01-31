@@ -224,6 +224,26 @@ def get_code_snippet(opt={}, out_json={}):
         return Markdown(markdown_string)
 
 
+def get_source_code(opt={}, out_json={}):
+    """
+    get source with content
+    """
+    content = opt.get('content', '')
+    language = opt.get('language', 'python')
+    show_line_number = opt.get('show_line_number', False)
+    line_numbers = opt.get('line_numbers', '')
+    title = opt.get('title', '')
+
+    return get_code_snippet({
+            'content': content,
+            'title': title,
+            'show_line_number': show_line_number,
+            'line_numbers': line_numbers,
+            'start_line_number': 1,
+            'end_line_number': len(content.splitlines()),
+            'language': language
+        })
+
 def check_directory(opt={}):
     default_command = """
 cd ./data/projects/
